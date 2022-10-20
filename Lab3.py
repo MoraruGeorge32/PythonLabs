@@ -31,18 +31,17 @@ def phraseDict(sentence):
 #Ex 3
 def listComparison(a,b):
     if len(a) != len(b):
-        return [a,b]
+        return False
     else:
        for index in range(0,len(a)):
-        if a[index]==b[index]:
-            del a[index]
-            del b[index]
-       return [a,b]
+        if a[index]!=b[index]:
+            return False
+       return True
 
 def setComparison(a,b):
     if a.difference(b) == set() and b.difference(a) == set():
-        return {}
-    return {a,b}
+        return True
+    return False
 
 def dictComparison(a,b):
     newDict=dict()
@@ -50,33 +49,26 @@ def dictComparison(a,b):
         if x in b:
             if type(a[x]) == type(b[x]):
                 if type(a[x]) is dict:
-                    if type(dictComparison(a[x],b[x])) is dict:
-                        newDict[x] = dictComparison(a[x],b[x]) 
+                    if not dictComparison(a[x],b[x]):
+                        return False
                 if type(a[x]) is list:
-                    [first,last] = listComparison(a[x],b[x])
-                    changes = first + last
-                    if len(changes)>0:
-                        newDict[x] = changes
+                    if not listComparison(a[x],b[x]):
+                        return False
                 if type(a[x]) is set:
-                    if setComparison(a[x],b[x]) != {}:
-                        newDict[x] = [a[x],b[x]]
+                    if not setComparison(a[x],b[x]):
+                        return False
                 if type(a[x]) is str:
                     if a[x] != b[x]:
-                        newDict[x] = [a[x],b[x]]
+                        return False
                 if type(a[x]) is int:
-                   if a[x]-b[x]!=0:
-                     newDict[x] = [a[x],b[x]]
-        else:
-            newDict[x] = a[x]
+                    if a[x]-b[x]!=0:
+                        return False
     for x in b:
         if x not in a:
-            newDict[x] = b[x]
-    if newDict == {}:
-        return "They are equal!"
-    else:
-        return newDict
+            return False
+    return True
 
-# print(dictComparison({"A":2,"B":{"C":"3"}},{"A":2,"B":{"C":"3"}}))
+print(dictComparison({"A":3,"B":{"C":"3"}},{"A":3,"B":{"C":"3"}}))
 
 #Ex 4
 def build_xml_element(tag,content,dictionary):
@@ -144,10 +136,10 @@ def operationsSet(sets):
             intersection=sets[index].intersection(sets[index2])
             difference1=sets[index].difference(sets[index2])
             difference2=sets[index2].difference(sets[index])
-            dictionary[f"{sets[index]} | {sets[index2]}"] = len(reunion)
-            dictionary[f"{sets[index]} & {sets[index2]}"] = len(intersection)
-            dictionary[f"{sets[index]} - {sets[index2]}"] = len(difference1)
-            dictionary[f"{sets[index2]} - {sets[index]}"] = len(difference2)
+            dictionary[f"{sets[index]} | {sets[index2]}"] = reunion
+            dictionary[f"{sets[index]} & {sets[index2]}"] = intersection
+            dictionary[f"{sets[index]} - {sets[index2]}"] = difference1
+            dictionary[f"{sets[index2]} - {sets[index]}"] = difference2
     return dictionary
 
 # print(operationsSet([{1,2},{2,3}]))
