@@ -38,7 +38,6 @@ def setComparison(a,b):
     return False
 
 def dictComparison(a,b):
-    newDict=dict()
     for x in a:
         if x in b:
             if type(a[x]) == type(b[x]):
@@ -126,14 +125,10 @@ def operationsSet(sets):
     dictionary = dict()
     for index in range(0, len(sets)-1):
         for index2 in range(index+1,len(sets)):
-            reunion=sets[index].union(sets[index2])
-            intersection=sets[index].intersection(sets[index2])
-            difference1=sets[index].difference(sets[index2])
-            difference2=sets[index2].difference(sets[index])
-            dictionary[f"{sets[index]} | {sets[index2]}"] = reunion
-            dictionary[f"{sets[index]} & {sets[index2]}"] = intersection
-            dictionary[f"{sets[index]} - {sets[index2]}"] = difference1
-            dictionary[f"{sets[index2]} - {sets[index]}"] = difference2
+            dictionary[f"{sets[index]} | {sets[index2]}"] = sets[index].union(sets[index2])
+            dictionary[f"{sets[index]} & {sets[index2]}"] = sets[index].intersection(sets[index2])
+            dictionary[f"{sets[index]} - {sets[index2]}"] = sets[index].difference(sets[index2])
+            dictionary[f"{sets[index2]} - {sets[index]}"] = sets[index2].difference(sets[index])
     return dictionary
 
 # print(operationsSet([{1,2},{2,3}]))
