@@ -155,13 +155,14 @@ def mapping(dictionary):
 # print(mapping({'start':'a', 'b':'a', 'a':'6', '6':'z', 'x': '2', 'z':'2', '2': '2', 'y':'start'}))
 
 #Ex 9
-def posKeyArgs(numbers,dictionary):
+def posKeyArgs(*num,**data):
     count=0
-    for x in numbers:
-        for y in dictionary:
-            if x == dictionary[y]:
-                count=count+1
-                break
+    dictionary = {}
+    for key, value in data.items():
+        dictionary[key] = value
+    for number in num:
+        for key in dictionary:
+            count = count + 1 if dictionary[key]==number else count
     return count
 
-# print(posKeyArgs([1,2,3,4],{'x':1,'y':2,'z':3,'w':5}))
+# print(posKeyArgs(1,2,3,4,x=1,y=2,z=3,w=5))
