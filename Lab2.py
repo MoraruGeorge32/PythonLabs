@@ -35,7 +35,7 @@ def checkPrim(x):
 def checkPrimArray(array):
     arr=[]
     for element in array:
-        if checkPrim(element) == True:
+        if checkPrim(element):
             arr.append(element)
     return arr
 
@@ -212,4 +212,4 @@ def group_by_rhyme(list):
             arr.append([copy.deepcopy(element)])
     return arr
 
-# print(group_by_rhyme(['ana','banana','carte','arme','palme','dame','parte','tarte','marte']))
+print(group_by_rhyme(['ana','carte','arme','palme','dame','parte','tarte','banana','marte']))

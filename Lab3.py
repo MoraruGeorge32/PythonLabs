@@ -1,7 +1,4 @@
-from calendar import different_locale
 import copy
-
-from Lab2 import intersection, reunion
 
 #Ex 1
 def operations(a,b):
@@ -20,10 +17,7 @@ def operations(a,b):
 def phraseDict(sentence):
     dictionary = dict()
     for char in sentence:
-        if char in dictionary:
-            dictionary[char] = dictionary[char]+1
-        else:
-            dictionary[char]=1
+        dictionary[char] = dictionary[char] + 1 if char in dictionary else 1
     return dictionary
 
 # print(phraseDict('Ana has apples.'))
@@ -68,7 +62,7 @@ def dictComparison(a,b):
             return False
     return True
 
-print(dictComparison({"A":3,"B":{"C":"3"}},{"A":3,"B":{"C":"3"}}))
+# print(dictComparison({"A":3,"B":{"C":"3"}},{"A":3,"B":{"C":"3"}}))
 
 #Ex 4
 def build_xml_element(tag,content,dictionary):
