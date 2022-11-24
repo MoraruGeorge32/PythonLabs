@@ -100,7 +100,7 @@ def nFibo(n):
         return array
 
 def process(**args):
-    fibonacciNumbers = nFibo(50)
+    fibonacciNumbers = nFibo(1000)
     limitNumber = 0
     offsetNumber = 0
     for argument in args.items():
@@ -117,7 +117,7 @@ def process(**args):
 
 # print(process(filters=[lambda item: item%2 == 0, lambda item: item == 2 or 4 <= sum_digits(item) <= 20], limit = 2, offset = 2))
 
-#Ex 8
+#Ex 8 a
 def multiply_by_two(x):
     return x*2
 
@@ -163,6 +163,7 @@ def augment_function(function, decorators):
         return value(*arg,**args)
     return executeDecorators
 
+
 # decorated_function = augment_function(add_numbers,[print_arguments,multiply_output])
 # x=decorated_function(3,4)
 # print(x)
@@ -178,6 +179,6 @@ def f9(pairs=[]):
         arrayOfDict.append(dictionary)
     return arrayOfDict
 
-print(f9([(5,2),(19,1),(30,6),(2,2)]))
+# print(f9([(5,2),(19,1),(30,6),(2,2)]))
 
 
